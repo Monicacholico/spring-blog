@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
     @RequestMapping(path = "/posts/{id}", method = RequestMethod.GET)
     @ResponseBody
     public String postId (@PathVariable int id) {
-        return "Your post has this: " + id + "!";
+        return "Your post has the id : " + id + "!";
     }
 
 //        @GetMapping ("/posts/{id}")
@@ -30,9 +30,21 @@ import org.springframework.web.bind.annotation.*;
 //        }
 
         @GetMapping("/posts/create")
-    public@ResponseBody String createPost (@PathVariable String newPost){
-            return newPost;
+    public@ResponseBody String createPost (){
+            return "View the form for creating a post";
         }
+
+
+        @GetMapping("/posts/{id}/edit")
+    public @ResponseBody String edit (@PathVariable long id){
+        return "View the form for eidting post # " + id;
+        }
+
+        @PostMapping("/posts/create")
+    public @ResponseBody String savePost(){
+        return "saving to the database...";
+        }
+
 
 
 }
