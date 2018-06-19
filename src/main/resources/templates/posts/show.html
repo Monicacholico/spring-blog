@@ -9,7 +9,12 @@
 
 </nav>
 
+<div class="container">
 <h1> This is the post you want to see!</h1>
+    <h2 th:text="${post.title}"/>
+    <p th:text="${post.body}"/>
+<input type="hidden" name="id" value="${post.id}"/>
+</div>
 
 </body>
 </html>

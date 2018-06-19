@@ -29,10 +29,19 @@ import java.util.List;
         return "Your post has the id : " + id + "!";
     }
 
+
+//    ------------ RYAN'S SOLUTION FOR SHOW POST PAGE --------------------------
+
 //        @GetMapping ("/posts/{id}")
-//        public @ResponseBody int postsId (@PathVariable int id){
-//            return id;
+//        public String showDetails (@PathVariable long id, Model view){
+//    Post post = new Post( " another post", "this is the body of that post");
+//    view.addAtributte( "post", post);
+//    return "posts/show";
 //        }
+
+
+
+
 
         @GetMapping("/posts/create")
     public@ResponseBody String createPost (){
@@ -76,9 +85,10 @@ import java.util.List;
 
 //        @GetMapping("/posts")
 //                public String index(Model view ){
-//            view.addAtributte("posts", makeSomePosts())
+//            List<Post> alistofPosts = makeSomePosts();
+//            view.addAtributte("posts", aListofPosts())
 //
-//            return "postx/index";
+//            return "posts/index";
 //        }
 //
 //
@@ -87,10 +97,11 @@ import java.util.List;
 //            return Arrays.asList(
 //                    new Post ("Recipe", "this is the post")
 //                    new Post ("Video", "this is a post with viedo")
-//            )
+//            );
 //        }
     }
 
-
+// --------------- How to add the css style? ---------------------------------
+    // ------------- How to add the application to send text messages? -------
 
 }
