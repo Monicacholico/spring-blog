@@ -13,5 +13,17 @@ public class HomeController {
         return "This is the landing page!";
     }
 
+    @GetMapping("/home")
+    public String showHomePage(){
+        return "home";
+    }
+
+    @GetMapping("/portfolio")
+    public String portfolio(){
+        return "portfolio";
+    }
+
+//    @GetMapping("/rolldice")
+//    public String rolldice(){ return "rolldice";}
 
 }

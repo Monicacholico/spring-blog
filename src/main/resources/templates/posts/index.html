@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:include="partials/head :: head">
+    <meta charset="UTF-8" />
+    <title>Posts</title>
+</head>
+<body>
+<nav th:include="partials/navbar :: navbar">
+
+</nav>
+
+<h1> These are all the posts!</h1>
+
+<!--<div th:each="item : ${posts}">-->
+    <!--<p th:text="${}" />-->
+<!--</div>-->
+
+<div th:each="post: ${posts}">
+    <h2 th:text="${post.title}"/>
+    <p th:
+    <!--<p th: text = "${post}"/>-->
+<!--</div>-->
+
+</body>
+</html>
