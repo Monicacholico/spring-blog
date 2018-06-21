@@ -11,15 +11,10 @@
 
 <h1> These are all the posts!</h1>
 
-<!--<div th:each="item : ${posts}">-->
-    <!--<p th:text="${}" />-->
-<!--</div>-->
+<div th:each="post: ${posts}">
+    <h2 th:text="${post.title}"></h2>
+    <p th:text="${post.body}" ></p>
 
-<div th:each="post: ${posts}" />
-    <h2 th:text="${post.title}" />
-    <p th:text="${post.body}" />
-    <!--<p th: text = "${post}"/>-->
-<!--</div>-->
 </div>
 </body>
 </html>

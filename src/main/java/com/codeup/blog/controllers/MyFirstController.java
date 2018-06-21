@@ -1,4 +1,4 @@
-package com.codeup.blog;
+package com.codeup.blog.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +16,6 @@ public class MyFirstController {
     public @ResponseBody String myFirsSpringView(){
         return "Hello from Spring!";
     }
-
-
 
 
 //    @GetMapping("/say-hello/{name}")
