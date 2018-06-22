@@ -31,4 +31,13 @@ public class PostService {
         return post;
     }
 
+    public Post deletePost (long id){
+        postRepository.delete(id);
+        return deletePost(id);
+    }
+
+    public void delete (long id){
+        postRepository.delete(id);
+    }
+
 }

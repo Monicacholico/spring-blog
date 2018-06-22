@@ -6,6 +6,7 @@ import com.codeup.blog.services.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -52,7 +53,7 @@ import java.util.List;
 
 
     @PostMapping("/posts/{id}/edit")
-    public String updatePost(@PathVariable long id, Model view, @Valid Post postDetails){
+    public String updatePost(@PathVariable long id, @Valid Post postDetails){
         System.out.println("updatePost");
         Post post = postService.findOne(id);
         post.setTitle(postDetails.getTitle());
@@ -60,6 +61,33 @@ import java.util.List;
         postService.save(post);
 
                 return "redirect:/posts";
+    }
+
+    @DeleteMapping("/posts/{id}/delete")
+    public String deletePost(@PathVariable long id){
+        postService.findOne(id);
+        postService.deletePost(id);
+
+        return "redirect:/posts";
+    }
+
+
+
+//
+//    @PostMapping("/posts/{id}/delete")
+//    public String delete(@PathVariable long id, final RedirectAttributes redirectAttributes){
+//        postService.delete(id);
+//
+//        redirectAttributes.addFlashAttribute("msg", "Post is deleted");
+//
+//        return "redirect/posts";
+//    }
+
+    @PostMapping("/posts/{id}/delete")
+    public String delete(@PathVariable long id){
+        postService.delete(id);
+
+        return "redirect:/posts";
     }
 
 

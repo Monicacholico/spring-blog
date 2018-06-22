@@ -12,7 +12,7 @@ public class Post {
     @Column(name = "the_title_of_the_post", nullable = false)
     private String title;
 
-    @Column(name = "the_detail_of_the_body", nullable = false)
+    @Column(name = "the_detail_of_the_body", nullable = false, columnDefinition = "TEXT")
     private String body;
 
     public Post(){}
