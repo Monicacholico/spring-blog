@@ -1,27 +1,29 @@
 package com.codeup.blog.controllers;
 
 import com.codeup.blog.Models.Post;
-import com.codeup.blog.repositories.PostRepository;
+import com.codeup.blog.Models.User;
+import com.codeup.blog.repositories.UserRepository;
 import com.codeup.blog.services.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
 
 
 @Controller
-    public class PostController {
+public class PostController {
 
 
     private final PostService postService;
+    private final UserRepository userRepository;
 
     // PostController constructor
     // Dependency Injection
-    public PostController(PostService postService) {
+    public PostController(PostService postService, UserRepository userRepository) {
         this.postService = postService;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/posts")
@@ -37,8 +39,12 @@ import java.util.List;
 
     @GetMapping("/posts/{id}")
     public String showDetails(@PathVariable long id, Model view){
+        System.out.println("entro");
         Post post = postService.findOne(id);
+        System.out.println(post.getUser().getEmail());
         view.addAttribute("post", post);
+
+
         return "posts/show";
     }
 
@@ -102,16 +108,19 @@ import java.util.List;
     public String create(@ModelAttribute Post post
     ) {
         // save the post...
+
+        post.setUser(userRepository.findOne(1L));
         postService.save(post);
+
         return "redirect:/posts";
     }
 
 
-    @RequestMapping(path = "/posts/show", method = RequestMethod.GET)
-    public String show (@ModelAttribute Post post
-       ){
-            return "posts/show";
-    }
+//    @RequestMapping(path = "/posts/show", method = RequestMethod.GET)
+//    public String show (@ModelAttribute Post post
+//       ){
+//            return "posts/show";
+//    }
 
 //    @PostMapping("/ads/create")
 //    public String create(

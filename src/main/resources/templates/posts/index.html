@@ -23,9 +23,7 @@
                 <p class="text-justify" th:text="${post.body}"></p>
                 <div class="row">
                     <div class="col-3">
-                        <!--<a th:href="@{'posts/' + ${id} + '/edit'}">Edit</a>-->
                         <a class="btn btn-warning" th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>
-                        <!--/edit(id=${post.id}/-->
                     </div>
                     <div class="col-3">
                         <form class="form-group" th:action="@{/posts/{id}/delete(id=${post.id})}" method="post">
