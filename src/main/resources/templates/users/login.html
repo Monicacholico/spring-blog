@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" lang="en">
+
+<head th:include="partials/head :: head">
+    <meta charset="UTF-8" />
+    <title>Log in</title>
+</head>
+<body class="bg-dark">
+<nav th:include="partials/navbar :: navbar">
+</nav>
+<div sec:authorize="isAuthenticated()">
+    This content is only shown to authenticated users.
+
+    User ID: <span th:text="${#authentication.principal.id}"/>
+    Username: <span th:text="${#authentication.principal.username}"/>
+    Email: <span th:text="${#authentication.principal.email}"/>
+</div>
+
+<div class="container text-center mt-5 p-5 bg-secondary border border-dark rounded">
+    <h1 class="mb-2" th:height="200"> Log in or Create an account!</h1>
+    <div class="row">
+        <div class="col-8 m-auto">
+        <div th:if="${param.error}">
+            Invalid Username and Password.
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
+        <form th:action="@{/login}" method="post">
+            <label for="username">Username</label>
+            <input class="form-control" id="username" name="username" type="text" />
+            <label for="password">Password</label>
+            <input class="form-control" id="password" name="password" type="password" />
+            <input class="btn btn-dark mt-3" type="submit" value="Log In" />
+        </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

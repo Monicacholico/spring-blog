@@ -10,19 +10,26 @@ public class User{
     @GeneratedValue
     private long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
-    @Column
+    @Column (unique = true, nullable = false)
     private String email;
 
-    @Column
+    @Column (nullable = false)
     private String password;
 
     @OneToMany(mappedBy = "user")
     private List<Post> posts;
 
     public User(){}
+
+    public User(User copy){
+        id = copy.id;
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+    }
 
 
     public long getId() {

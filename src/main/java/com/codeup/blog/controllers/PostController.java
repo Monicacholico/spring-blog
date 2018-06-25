@@ -79,16 +79,6 @@ public class PostController {
 
 
 
-//
-//    @PostMapping("/posts/{id}/delete")
-//    public String delete(@PathVariable long id, final RedirectAttributes redirectAttributes){
-//        postService.delete(id);
-//
-//        redirectAttributes.addFlashAttribute("msg", "Post is deleted");
-//
-//        return "redirect/posts";
-//    }
-
     @PostMapping("/posts/{id}/delete")
     public String delete(@PathVariable long id){
         postService.delete(id);

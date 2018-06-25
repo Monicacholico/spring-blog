@@ -8,7 +8,7 @@
 
 <div class="container bg-secondary text-center border border-dark rounded mt-5">
 
-    <form class="form-group" action="/posts/create" method="post" th:object="${post}">
+    <form class="form-group" th:action="@{/posts/create}" method="post" th:object="${post}">
         <h2>Title:</h2>
         <input class="form-control" th:field="*{title}" />
         <br />
