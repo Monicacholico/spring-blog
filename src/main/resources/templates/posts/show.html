@@ -6,16 +6,38 @@
 </head>
 <body>
 <nav th:include="partials/navbar :: navbar">
-
 </nav>
-
 <div class="container">
-<h1> This is the post you want to see!</h1>
-    <h2 th:text="${post.title}"></h2>
-    <p th:text="${post.body}"></p>
-    <p th:text="${post.user.email}"></p>
-<input type="hidden" name="id" value="${post.id}"/>
-</div>
+    <div class="p-5 m-2 bg-dark text-white border border-dark rounded" th:each="post: ${posts}" th:height="auto">
+        <ul class="list-unstyled">
+            <li class="media">
+             <img class="mr-3" src="http://via.placeholder.com/150x150" alt="Generic placeholder image" />
+                <div class="media-body p-2" th:height="auto">
+                 <h2 class="text-left mt-0 mb-1" th:height="200" th:text="${post.title}">
+                 </h2>
+                 <p class="text-justify" th:text="${post.body}"></p>
+                 <p th:text="${post.user.email}"></p>
+                 <input type="hidden" name="id" value="${post.id}"/>
+                <div class="row">
+                 <div class="col-3">
+                    <a class="btn btn-warning" th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>
+                 </div>
+                 <div class="col-3">
+                 <form class="form-group" th:action="@{/posts/{id}/delete(id=${post.id})}" method="post">
+                 <button type="submit" class="btn btn-danger" id="delete" name="delete">Delete</button>
+                 </form>
+                 </div>
+                 </div>
+             </div>
+            </li>
+        </ul>
+    </div>
 
+<!--<h1> This is the post you want to see!</h1>-->
+    <!--<h2 th:text="${post.title}"></h2>-->
+    <!--<p th:text="${post.body}"></p>-->
+    <!--<p th:text="${post.user.email}"></p>-->
+<!--<input type="hidden" name="id" value="${post.id}"/>-->
+</div>
 </body>
 </html>
