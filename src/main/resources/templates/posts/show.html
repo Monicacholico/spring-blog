@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <title>Show post</title>
 </head>
-<body>
+<body class="bg-dark">
 <nav th:include="partials/navbar :: navbar">
 </nav>
-<div class="container">
-    <div class="p-5 m-2 bg-dark text-white border border-dark rounded" th:each="post: ${posts}" th:height="auto">
+<div class="container text-center mt-5 p-5 bg-secondary border border-dark rounded">
+    <h1 class="mb-2" th:height="200"> This is the post you want to see!</h1>
+    <div class="p-5 m-2 bg-dark text-white border border-dark rounded" th:height="auto">
         <ul class="list-unstyled">
             <li class="media">
              <img class="mr-3" src="http://via.placeholder.com/150x150" alt="Generic placeholder image" />
@@ -33,7 +34,8 @@
         </ul>
     </div>
 
-<!--<h1> This is the post you want to see!</h1>-->
+
+
     <!--<h2 th:text="${post.title}"></h2>-->
     <!--<p th:text="${post.body}"></p>-->
     <!--<p th:text="${post.user.email}"></p>-->
