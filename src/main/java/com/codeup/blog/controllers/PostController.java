@@ -60,7 +60,6 @@ public class PostController {
 
     @PostMapping("/posts/{id}/edit")
     public String updatePost(@PathVariable long id, @Valid Post postDetails){
-        if()
         System.out.println("updatePost");
         Post post = postService.findOne(id);
         post.setTitle(postDetails.getTitle());
