@@ -4,6 +4,7 @@ import com.codeup.blog.Models.Post;
 import com.codeup.blog.Models.User;
 import com.codeup.blog.repositories.UserRepository;
 import com.codeup.blog.services.PostService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -51,12 +52,16 @@ public class PostController {
 
 
     @GetMapping("/posts/{id}/edit")
-    public String edit (@PathVariable long id,  Model view){
-        view.addAttribute("post", postService.findOne(id));
-        return "/posts/edit";
+    public String edit (@PathVariable long id,  Model view) {
+        User sessionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userRepository.findById(sessionUser.getId());
+        Post post = postService.findOne(id);
+        if (post.getUser().getId() == user.getId()) {
+            view.addAttribute("post", postService.findOne(id));
+            return "/posts/edit";
+        } else
+            return "redirect:/login";
     }
-
-
 
     @PostMapping("/posts/{id}/edit")
     public String updatePost(@PathVariable long id, @Valid Post postDetails){
