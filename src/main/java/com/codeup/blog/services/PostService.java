@@ -48,4 +48,8 @@ public class PostService {
         postRepository.delete(id);
     }
 
+    public List<Post> findByTitle(String title) {
+        return postRepository.findByTitle(title);
+    }
+
 }

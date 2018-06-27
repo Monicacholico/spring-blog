@@ -7,9 +7,9 @@ import org.springframework.data.repository.CrudRepository;
 public interface UserRepository extends CrudRepository<User, Long> {
     User findOne(Long id);
 
-    User findById(Long id);
-
     User findByUsername(String name);
+
+    User findById(Long id);
 
     @Query(nativeQuery = true, value="SELECT * FROM user LIMIT 1") // To insert any user without taking care of the id
     User first();

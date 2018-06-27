@@ -61,6 +61,9 @@ public class PostController {
             return "/posts/edit";
         } else
             return "redirect:/login";
+
+
+
     }
 
     @PostMapping("/posts/{id}/edit")
@@ -86,9 +89,19 @@ public class PostController {
 
     @PostMapping("/posts/{id}/delete")
     public String delete(@PathVariable long id){
-        postService.delete(id);
+        User sessionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userRepository.findById(sessionUser.getId());
+        Post post = postService.findOne(id);
+        if (post.getUser().getId() != user.getId()) {
+            return "redirect:/login";
+        } else if (userRepository.findById(sessionUser.getId()) == null){
+            return "redirect:/posts";
+        }else{
+            postService.delete(id);
+            return "redirect:/posts";
+        }
 
-        return "redirect:/posts";
+
     }
 
 
@@ -109,6 +122,17 @@ public class PostController {
 
         return "redirect:/posts";
     }
+
+
+    @PostMapping("/posts")
+    public String findPost(Model model){
+        List<Post> post = postService.findByTitle("title");
+        model.addAttribute("posts", post);
+        return "/posts";
+    }
+
+
+
 
 
 //    @RequestMapping(path = "/posts/show", method = RequestMethod.GET)

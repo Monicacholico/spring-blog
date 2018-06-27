@@ -5,7 +5,8 @@
     <title>Title</title>
 </head>
 <body class="bg-dark">
-
+<nav th:replace="partials/navbar :: navbar">
+</nav>
 <div class="container bg-secondary text-center border border-dark rounded mt-5">
 
     <form class="form-group" th:action="@{'/posts/' + ${id} + '/edit'}" th:method="post" th:object="${post}">
