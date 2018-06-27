@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" lang="en">
 <head th:include="partials/head :: head">
     <meta charset="UTF-8" />
     <title>Show post</title>
@@ -20,10 +20,10 @@
                  <p th:text="${post.user.email}"></p>
                  <input type="hidden" name="id" value="${post.id}"/>
                 <div class="row">
-                 <div class="col-3">
+                 <div class="col-3" sec:authorize="isAuthenticated()">
                     <a class="btn btn-warning" th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>
                  </div>
-                 <div class="col-3">
+                 <div class="col-3" sec:authorize="isAuthenticated()">
                  <form class="form-group" th:action="@{/posts/{id}/delete(id=${post.id})}" method="post">
                  <button type="submit" class="btn btn-danger" id="delete" name="delete">Delete</button>
                  </form>

@@ -94,14 +94,9 @@ public class PostController {
         Post post = postService.findOne(id);
         if (post.getUser().getId() != user.getId()) {
             return "redirect:/login";
-        } else if (userRepository.findById(sessionUser.getId()) == null){
-            return "redirect:/posts";
-        }else{
+        } else
             postService.delete(id);
             return "redirect:/posts";
-        }
-
-
     }
 
 

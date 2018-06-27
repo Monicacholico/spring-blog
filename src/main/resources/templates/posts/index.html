@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" lang="en">
 <head th:replace="partials/head :: head">
     <meta charset="UTF-8" />
     <title>Posts</title>
@@ -10,6 +10,13 @@
 <div class="container text-center mt-5 p-5 bg-secondary border border-dark rounded">
 
 <h1 class="mb-2" th:height="200"> These are all the posts!</h1>
+    <div sec:authorize="isAuthenticated()">
+       <h2>Hi, <span th:text="${#authentication.principal.username}"/></h2>
+
+        <!--User ID: <span th:text="${#authentication.principal.id}"/>-->
+        <!--Username: <span th:text="${#authentication.principal.username}"/>-->
+        <!--Email: <span th:text="${#authentication.principal.email}"/>-->
+    </div>
 
 <div class="p-5 m-2 bg-dark text-white border border-dark rounded" th:each="post: ${posts}" th:height="auto">
     <ul class="list-unstyled">
@@ -20,16 +27,16 @@
                     <a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}" />
                 </h2>
                 <p class="text-justify" th:text="${post.body}"></p>
-                <div class="row">
-                    <div class="col-3">
-                        <a class="btn btn-warning" th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>
-                    </div>
-                    <div class="col-3">
-                        <form class="form-group" th:action="@{/posts/{id}/delete(id=${post.id})}" method="post">
-                            <button type="submit" class="btn btn-danger" id="delete" name="delete">Delete</button>
-                        </form>
-                    </div>
-                </div>
+                <!--<div class="row">-->
+                    <!--<div class="col-3">-->
+                        <!--<a class="btn btn-warning" th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>-->
+                    <!--</div>-->
+                    <!--<div class="col-3">-->
+                        <!--<form class="form-group" th:action="@{/posts/{id}/delete(id=${post.id})}" method="post">-->
+                            <!--<button type="submit" class="btn btn-danger" id="delete" name="delete">Delete</button>-->
+                        <!--</form>-->
+                    <!--</div>-->
+                <!--</div>-->
 
                 <!--<a th:href="/delete/{id}" class="btn btn-secondary">Delete</a>-->
             </div>
