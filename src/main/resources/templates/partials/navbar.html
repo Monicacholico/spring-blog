@@ -4,7 +4,7 @@
 </head>
 <body>
  <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-secondary bg-secondary">
-     <h1 class="navbar text-center navbar-fixed-top"></h1>
+     <h1 class="navbar text-center navbar-fixed-top main-title">Deblogger</h1>
         <a class="navbar-brand" href="/posts">Posts</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -14,13 +14,13 @@
                 <li class="nav-item active" sec:authorize="isAnonymous()">
                     <a class="nav-link" href="/login">Login<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <form th:action="@{/logout}" th:method="post">
-                    <button class="btn btn-link btn-secondary" >Logout</button>
-                    </form>
-                </li>
                 <li class="nav-item" sec:authorize="isAuthenticated()">
                     <a class="nav-link" href="/posts/create">Create</a>
+                </li>
+                <li class="nav-item">
+                    <form th:action="@{/logout}" th:method="post">
+                        <button class="logout nav-link">Logout</button>
+                    </form>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
